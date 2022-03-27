@@ -1,10 +1,10 @@
 <template>
   <div class="w-fit bg-orange-50">
     <BoxContainer>
-      <li v-for="index in 9" :key="index">
+      <li v-for="i in 9" :key="i">
         <BoxContainer>
-          <li v-for="index in 9" :key="index">
-            <SquareInput />
+          <li v-for="j in 9" :key="j">
+            <SquareInput :id="i + '-' + j" />
           </li>
         </BoxContainer>
       </li>
