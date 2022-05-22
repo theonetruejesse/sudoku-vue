@@ -3,38 +3,44 @@
     class="border-2 w-14 h-14 border-blue-600 shadow-md rounded-md"
     @click="setActive()"
   >
-    {{ value }}
+    {{ square != 0 ? square : "" }}
+    <!-- {{}} -->
+    <!-- {{ id }} -->
   </button>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import { game } from "../../state/game";
+import { getCoordinates } from "../../helpers/getCoordinates";
+// import { problem } from ".././helpers/problem";
 
 export default defineComponent({
   name: "square-input",
 
   props: {
     id: String,
+    value: Number,
   },
   setup(props) {
+    const square = ref(props.value);
+
     const getValue = (id: string) => {
-      const index = id.split("-").map((i) => {
-        return parseInt(i) - 1;
-      });
-      return game.board[index[0]][index[1]];
+      const idArray = id.split("-").map((i) => parseInt(i));
+      const { x, y } = getCoordinates(idArray[0], idArray[1]);
+      return game.board[y][x];
     };
+
     const setActive = () => {
       game.active = props.id;
-      console.log(game.active);
+      game.toggle = true;
     };
 
-    const value = getValue(props.id!);
+    // yeah there should be no edge cases, all gud
 
-    // const add = () => {
-    //   count.value += 1;
-    // };
-    return { value, setActive };
+    square.value = getValue(props.id!);
+
+    return { square, setActive };
   },
 });
 </script>

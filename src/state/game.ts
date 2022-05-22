@@ -1,16 +1,11 @@
+import { empty } from "../helpers/empty";
 import { reactive } from "vue";
+import { BoardGame, BoardSquare } from "../interfaces/board";
+// import { problem } from "../helpers/problem";
 
-interface GameInterface {
-  toggle: boolean;
-  active: string | undefined;
-  board: number[][] | undefined[][];
-  // board:
-}
-
-const empty = [...Array(9)].map((x) => Array(9));
-
-export const game: GameInterface = reactive({
+export const game: BoardGame = reactive({
   toggle: false,
   active: undefined,
   board: empty,
+  // board: problem,
 });

@@ -19,8 +19,8 @@ export default defineComponent({
     GameBoard,
     HeaderSection,
   },
-  data() {
-    return { the: "yooo" };
-  },
+  // data() {
+  //   return { the: "yooo" };
+  // },
 });
 </script>
